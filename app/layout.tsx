@@ -1,12 +1,12 @@
-import { Inter } from "next/font/google"
+import { Poppins } from "next/font/google"
 import "./globals.css"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import { BRAND_NAME } from "./constants"
 import { ThemeProvider } from "@/components/theme-provider"
-import type React from "react" // Added import for React
+import type React from "react"
 
-const inter = Inter({ subsets: ["latin"] })
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700"] })
 
 export const metadata = {
   title: `${BRAND_NAME} - Premium Cinnamon for International Customers`,
@@ -21,14 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
-          <main className="container mx-auto px-4 py-8">{children}</main>
+          <main className="max-container w-full">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
     </html>
   )
 }
-

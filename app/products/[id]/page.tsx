@@ -4,7 +4,6 @@ import { BRAND_NAME } from "../../constants"
 import { Button } from "@/components/ui/button"
 import { Star } from "lucide-react"
 
-// This would typically come from a database or API
 const products = [
   {
     id: 1,
@@ -14,6 +13,7 @@ const products = [
     description:
       'Known as "true cinnamon," Ceylon cinnamon is prized for its delicate, sweet flavor with subtle notes of citrus. It\'s perfect for desserts and beverages.',
     rating: 4.8,
+    image: "/products/ceylon-cinnamon.jpg"
   },
   {
     id: 2,
@@ -23,6 +23,7 @@ const products = [
     description:
       "Cassia cinnamon has a strong, spicy flavor that's ideal for savory dishes and baking. It's the most common type of cinnamon found in kitchens worldwide.",
     rating: 4.5,
+    image: "/products/cassia-cinnamon.jpg"
   },
   {
     id: 3,
@@ -32,6 +33,7 @@ const products = [
     description:
       "Saigon cinnamon is known for its bold, complex flavor with sweet and spicy notes. It's excellent for baking and adds depth to savory dishes.",
     rating: 4.7,
+    image: "/products/saigon-cinnamon.jpg"
   },
   {
     id: 4,
@@ -41,6 +43,7 @@ const products = [
     description:
       "Korintje cinnamon offers a balanced, warm flavor that's versatile in both sweet and savory applications. It's a favorite among professional bakers.",
     rating: 4.6,
+    image: "/products/korintje-cinnamon.jpg"
   },
   {
     id: 5,
@@ -50,6 +53,7 @@ const products = [
     description:
       "Our premium Royal Cinnamon is hand-harvested from ancient cinnamon trees. It boasts an intense, complex flavor with notes of honey and citrus.",
     rating: 4.9,
+    image: "/products/royal-cinnamon.jpg"
   },
 ]
 
@@ -65,7 +69,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       <div className="grid md:grid-cols-2 gap-8">
         <div>
           <Image
-            src={`/placeholder.svg?height=600&width=600`}
+            src={product.image || "/placeholder.svg"}
             alt={product.name}
             width={600}
             height={600}
@@ -113,4 +117,3 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     </div>
   )
 }
-
