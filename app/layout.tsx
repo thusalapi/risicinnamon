@@ -3,7 +3,8 @@ import "./globals.css"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import { BRAND_NAME } from "./constants"
-import type React from "react" // Import React
+import { ThemeProvider } from "@/components/theme-provider"
+import type React from "react" // Added import for React
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,11 +20,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Header />
-        <main className="container mx-auto px-4 py-8">{children}</main>
-        <Footer />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
+          <main className="container mx-auto px-4 py-8">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
