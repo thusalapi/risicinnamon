@@ -69,6 +69,7 @@ export default function Header() {
                 <ShoppingCart className="w-5 h-5 text-cinnamon-700 dark:text-cinnamon-200" />
               </Link>
             </li>
+            {/* Theme Toggle */}
             <li>
               <ThemeToggle />
             </li>
