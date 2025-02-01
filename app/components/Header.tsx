@@ -39,18 +39,18 @@ export default function Header() {
             </li>
             <li>
               <Link 
-                href="/products" 
-                className="text-cinnamon-700 dark:text-cinnamon-200 hover:text-gold-600 dark:hover:text-gold-400 transition-all hover:scale-105"
-              >
-                Products
-              </Link>
-            </li>
-            <li>
-              <Link 
                 href="/about" 
                 className="text-cinnamon-700 dark:text-cinnamon-200 hover:text-gold-600 dark:hover:text-gold-400 transition-all hover:scale-105"
               >
                 About
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/products" 
+                className="text-cinnamon-700 dark:text-cinnamon-200 hover:text-gold-600 dark:hover:text-gold-400 transition-all hover:scale-105"
+              >
+                Products
               </Link>
             </li>
             <li>
@@ -89,20 +89,20 @@ export default function Header() {
             </li>
             <li>
               <Link 
-                href="/products" 
-                className="block text-cinnamon-700 dark:text-cinnamon-200 hover:text-gold-600 dark:hover:text-gold-400"
-                onClick={() => setIsOpen(false)}
-              >
-                Products
-              </Link>
-            </li>
-            <li>
-              <Link 
                 href="/about" 
                 className="block text-cinnamon-700 dark:text-cinnamon-200 hover:text-gold-600 dark:hover:text-gold-400"
                 onClick={() => setIsOpen(false)}
               >
                 About
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/products" 
+                className="block text-cinnamon-700 dark:text-cinnamon-200 hover:text-gold-600 dark:hover:text-gold-400"
+                onClick={() => setIsOpen(false)}
+              >
+                Products
               </Link>
             </li>
             <li>

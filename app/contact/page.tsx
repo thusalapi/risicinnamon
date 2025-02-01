@@ -1,11 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { BRAND_NAME } from "../constants"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin, Loader2 } from "lucide-react"
+import emailjs from '@emailjs/browser'
+import { toast } from "sonner"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,23 +15,45 @@ export default function Contact() {
     email: "",
     message: "",
   })
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prevState) => ({ ...prevState, [name]: value }))
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+
+    try {
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        {
+          from_name: formData.name,
+          reply_to: formData.email,
+          message: formData.message,
+          to_name: BRAND_NAME,
+        },
+        'YOUR_PUBLIC_KEY'
+      )
+
+      toast.success("Thank you for your message. We will get back to you soon!")
+      setFormData({ name: "", email: "", message: "" })
+    } catch (error) {
+      console.error('Email error:', error)
+      toast.error("Sorry, something went wrong. Please try again later.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Here you would typically send the form data to your server
-    console.log("Form submitted:", formData)
-    // Reset form after submission
-    setFormData({ name: "", email: "", message: "" })
-    alert("Thank you for your message. We will get back to you soon!")
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-36">
       <h1 className="text-4xl font-serif font-bold text-center text-cinnamon-800 mb-8">Contact Us</h1>
 
       <div className="grid md:grid-cols-2 gap-12">
@@ -99,9 +123,20 @@ export default function Contact() {
               rows={4}
             />
           </div>
-          <Button type="submit" className="bg-gold-500 hover:bg-gold-600 text-white">
-            Send Message
-          </Button>
+          <Button 
+          type="submit" 
+          className="w-full sm:w-auto px-8 py-6 text-lg bg-gold-500 hover:bg-gold-600 text-white transition-all duration-300 hover:scale-105"
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Sending...
+            </>
+          ) : (
+            'Send Message'
+          )}
+        </Button>
         </form>
       </div>
 
