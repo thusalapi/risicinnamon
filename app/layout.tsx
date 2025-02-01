@@ -27,8 +27,16 @@ export default function RootLayout({
           <Header />
           <main className="max-container w-full">{children}</main>
           <Footer />
-          <Toaster position="top-center" theme="system" />
-        </ThemeProvider>
+          <Toaster 
+            position="top-right" 
+            theme="system" 
+            richColors 
+            expand 
+            closeButton
+            duration={4000}
+            gap={8}
+          />        
+          </ThemeProvider>
       </body>
     </html>
   )
