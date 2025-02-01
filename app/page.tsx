@@ -1,101 +1,74 @@
-import Image from "next/image";
+import Link from "next/link"
+import Image from "next/image"
+import { BRAND_NAME } from "./constants"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="space-y-16">
+      <section className="text-center py-20 bg-gradient-to-r from-cinnamon-100 to-gold-100">
+        <h1 className="text-5xl font-serif font-bold mb-6 text-cinnamon-800">{BRAND_NAME}</h1>
+        <p className="text-2xl mb-8 text-cinnamon-700">Indulge in the world's finest cinnamon</p>
+        <Link
+          href="/products"
+          className="bg-gold-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gold-600 transition-colors"
+        >
+          Explore Our Collection
+        </Link>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <section className="container mx-auto px-4">
+        <h2 className="text-3xl font-serif font-bold mb-8 text-center text-cinnamon-800">Our Signature Products</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {["Ceylon Cinnamon", "Cassia Cinnamon", "Saigon Cinnamon"].map((product, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <Image
+                src={`/placeholder.svg?height=300&width=400`}
+                alt={product}
+                width={400}
+                height={300}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2 text-cinnamon-700">{product}</h3>
+                <p className="text-cinnamon-600 mb-4">
+                  Experience the rich, aromatic flavor of our premium {product.toLowerCase()}.
+                </p>
+                <Link
+                  href={`/products/${index + 1}`}
+                  className="text-gold-500 font-semibold hover:text-gold-600 transition-colors"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      <section className="bg-cinnamon-50 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-serif font-bold mb-8 text-center text-cinnamon-800">Why Choose {BRAND_NAME}?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Premium Quality", description: "We source only the finest cinnamon from around the world." },
+              {
+                title: "Rich Flavor",
+                description: "Our cinnamon delivers an unparalleled depth of flavor to your dishes.",
+              },
+              {
+                title: "Ethically Sourced",
+                description: "We ensure fair practices and sustainability in our sourcing.",
+              },
+            ].map((item, index) => (
+              <div key={index} className="text-center">
+                <h3 className="text-xl font-semibold mb-4 text-cinnamon-700">{item.title}</h3>
+                <p className="text-cinnamon-600">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
-  );
+  )
 }
+
