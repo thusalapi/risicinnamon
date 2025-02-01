@@ -4,6 +4,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import { BRAND_NAME } from "./constants"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "sonner"
 import type React from "react"
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700"] })
@@ -26,6 +27,7 @@ export default function RootLayout({
           <Header />
           <main className="max-container w-full">{children}</main>
           <Footer />
+          <Toaster position="top-center" theme="system" />
         </ThemeProvider>
       </body>
     </html>
